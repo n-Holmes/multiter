@@ -23,7 +23,7 @@ def depthflatten(iterable, depth):
 
     for elem in iterable:
         if depth > 1:
-            for item in flatten(elem, depth - 1):
+            for item in depthflatten(elem, depth - 1):
                 yield item
         else:
             yield elem
@@ -50,7 +50,7 @@ def depthenum(iterable, depth):
 
     for i, elem in enumerate(iterable):
         if depth > 1:
-            for indices, item in multenum(elem, depth - 1):
+            for indices, item in depthenum(elem, depth - 1):
                 yield (i,) + indices, item
         else:
             yield (i,),  (elem,)
